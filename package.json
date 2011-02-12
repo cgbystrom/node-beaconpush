@@ -1,0 +1,33 @@
+{
+  "name": "beaconpush",
+  "version": "0.1.0",
+  "description": "node.js client for the Beaconpush API (cloud hosted service for Web Sockets and other push technologies)",
+  "homepage": "http://beaconpush.com",
+  "author": "Carl Byström <cgbystrom@gmail.com>",
+  "keywords": ["websocket", "websockets", "realtime", "html5", "cloud", "push"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cgbystrom/node-beaconpush.git"
+  },
+  "bugs": {
+    "web": "https://github.com/cgbystrom/node-beaconpush/issues"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "request": ">= 1.9.0"
+  },
+  "devDependencies": {
+    "coffee-script": ">= 1.0.1",
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cgbystrom/node-beaconpush/raw/master/LICENSE"
+    }
+  ]
+}
