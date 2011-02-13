@@ -1,2 +1,2 @@
-exports.v1 = require("./version1")
+exports.Client = require("./client")
 
