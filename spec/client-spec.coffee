@@ -5,8 +5,14 @@ beaconpush = require("../src/index")
 sys = require('sys')
 Client = beaconpush.Client
 
-API_KEY = 'REPLACE'
-SECRET_KEY = 'REPLACE'
+API_KEY = process.env['BEACONPUSH_API_KEY']
+SECRET_KEY = process.env['BEACONPUSH_SECRET_KEY']
+
+if not API_KEY? or not SECRET_KEY?
+  sys.puts 'Missing env. variable BEACONPUSH_API_KEY and/or BEACONPUSH_SECRET_KEY'
+  sys.puts 'They are required to run the tests. Look up your keys under the "Account" page on beaconpush.com'
+  sys.puts 'and set them accordingly'
+  process.exit 1
 
 vows.describe('Beaconpush REST API v1 Client').addBatch
   'A Client':
