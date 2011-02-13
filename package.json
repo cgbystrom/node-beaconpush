@@ -19,10 +19,11 @@
     "node": "*"
   },
   "dependencies": {
-    "request": ">= 1.9.0"
+    "request": ">= 1.2.0"
   },
   "devDependencies": {
     "coffee-script": ">= 1.0.1",
+    "vows": "0.5.6"
   },
   "licenses": [
     {
