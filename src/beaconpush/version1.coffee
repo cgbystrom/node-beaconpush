@@ -2,11 +2,6 @@
 
 #beaconPush.usersConnected
 
-#beaconpush.user("charlie").connected
-#beaconpush.user("charlie").send({"apa": 123})
-#beaconpush.user("charlie").disconnect()
-
-
 #beaconpush.channel("forum").usersConnected
 #beaconpush.channel("forum").send({"myMessage": "sdsdf})
 
@@ -17,14 +12,22 @@ clone = (o) ->
   c = {}
   for k, v of o
     c[k] = v
-  c 
+  c
 
-class User
-  constructor: (client, name) ->
+class Resource
+  constructor: (client, type, name) ->
     @client = client
     @name = name
-    @url = @client.url + '/users/' + @name
+    @url = @client.url + '/' + type + 's/' + @name
 
+  send: (message, callback) ->
+    request {uri: @url, method: 'POST', headers: @client.headers, json: message}, (err, response, body) ->
+      numDelivered = undefined
+      if not err and response.statusCode is 200
+        numDelivered = JSON.parse(body).messages_sent
+      callback(err, numDelivered)
+
+class User extends Resource
   isConnected: (callback) ->
     request {uri: @url, headers: @client.headers}, (err, response, body) ->
       connected = not err and response.statusCode == 200
@@ -37,13 +40,16 @@ class User
       if not err and response.statusCode isnt 204
         err = "Unexpected response code: " + response.statusCode
       callback(err)
-  
-  send: (message, callback) ->
-    request {uri: @url, method: 'POST', headers: @client.headers, json: message}, (err, response, body) ->
-      numDelivered = undefined
+
+class Channel extends Resource
+  usersConnected: (callback) ->
+    request {uri: @url, headers: @headers}, (err, response, body) ->
+      users = undefined
       if not err and response.statusCode is 200
-        numDelivered = JSON.parse(body).messages_sent
-      callback(err, numDelivered)
+        users = JSON.parse(body).users
+      else
+        err = "Unexpected response code: " + response.statusCode
+      callback(err, users)
 
 class Client
   version: '1'
@@ -53,9 +59,21 @@ class Client
     @headers = {'X-Beacon-Secret-Key': @secretKey}
     @url = 'http://api.beaconpush.com/1.0.0/' + @apiKey
 
+  channel: (name) ->
+    # TODO: Check valid channel name
+    new Channel(this, 'channel', name)
+  
   user: (name) ->
     # TODO: Check valid username
-    new User(this, name)
+    new User(this, 'user', name)
+
+  usersConnected: (callback) ->
+    request {uri: @url + '/users', headers: @headers}, (err, response, body) ->
+      numConnected = undefined
+      if not err and response.statusCode is 200
+        numConnected = JSON.parse(body).online
+      callback(err, numConnected)
+
 
 
 module.exports = Client
