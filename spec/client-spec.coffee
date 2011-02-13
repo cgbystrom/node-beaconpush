@@ -5,8 +5,8 @@ beaconpush = require("../src/index")
 sys = require('sys')
 Client = beaconpush.Client
 
-API_KEY = 'c37c744dac99b19c9f5485d1967ace3f0d18914c'
-SECRET_KEY = 'edd9f0bf37a1c8f5126fda468705ee9e83f7b698'
+API_KEY = 'REPLACE'
+SECRET_KEY = 'REPLACE'
 
 vows.describe('Beaconpush REST API v1 Client').addBatch
   'A Client':
