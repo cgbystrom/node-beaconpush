@@ -1,7 +1,7 @@
 node-beaconpush
 ===============
 
-A fast and easy-to-use node.js client for [Beaconpush](http://beaconpush.com), a cloud hosted service for browser push messaging.
+A fast and easy-to-use node.js client for [Beaconpush](http://beaconpush.com), a cloud hosted service for browser push messaging with Web Sockets.
 
 Example
 -------
