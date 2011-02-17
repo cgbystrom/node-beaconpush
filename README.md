@@ -10,8 +10,8 @@ Sends a message to a connected web browser:
     // Create a new client
     var beaconpush = new Client('<your-api-key>', '<your-secret-key>');
     
-    // Send a 'chatMessage' to user 'charlie'
-    beaconpush.user('charlie').send({chatMessage: 'ZOMG'});
+    // Send a 'chatMessage' to user 'romeo'
+    beaconpush.user('romeo').send({chatMessage: 'ZOMG'});
 
 What is Beaconpush?
 -------------------
@@ -33,6 +33,58 @@ First-class support for users making real-time, social sites a snap to create. D
 With high-performing, custom-written push server technology, Beaconpush will take care of all scalability needs for you.
 
 Read more on [beaconpush.com](http://beaconpush.com)
+
+Installation
+---------------
+
+With Node Package Manager installed, just type:
+
+    npm install beaconpush
+
+
+API Examples
+--------
+
+    // Create a new client
+    var beaconpush = new Client('<your-api-key>', '<your-secret-key>');
+    
+    // Get number of users currently connected to your site
+    beaconpush.usersConnected(function (numConnected) {
+      console.log('There are ' + numConnected + ' users online');
+    });
+
+
+    // Get a user object where you do user operations
+    var user = beaconpush.user('julia');
+
+    // Send a stock quote to user 'julia'
+    user.send({stock: {symbol: "GOOG", quote: 34.2}}, function (err, numDelivered) {
+      console.log('Delivered ' + numDelivered + ' message(s)');
+    });
+
+    // Check if user is online
+    user.isConnected(function (err, connected) {
+      console.log('User ' + user.name + ' is ' + (connected ? 'connected' : 'not connected'));
+    });
+    
+    // Disconnect user
+    user.disconnect(function (err, connected) {
+      console.log('User ' + user.name + ' was disconnected');
+    });
+
+
+    // Get a channel object for doing channel operations
+    var channel = beaconpush.channel('chat');
+
+    // Send a chat message to channel
+    channel.send({chatMessage: {to: "romeo", from: "julia", message: "Oh, Romeo!"}}, function (err, numDelivered) {
+      console.log('Delivered ' + numDelivered + ' message(s)');
+    });
+
+    // Get users connected to a channel
+    channel.usersConnected(function (err, users) {
+      console.log('Users online ' + users);
+    });
 
 Authors
 -------
