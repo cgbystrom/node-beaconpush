@@ -36,12 +36,10 @@ task "setup", "Install development dependencies", ->
 task "install", "Install Beaconpush in your local repository", ->
   build (err)->
     onerror err
-    generateMan (err)->
+    log "Installing Beaconpush ...", green
+    exec "npm install", (err, stdout, stderr)->
+      process.stdout.write stderr
       onerror err
-      log "Installing Beaconpush ...", green
-      exec "npm install", (err, stdout, stderr)->
-        process.stdout.write stderr
-        onerror err
 
 build = (callback)->
   log "Compiling CoffeeScript to JavaScript ...", green
