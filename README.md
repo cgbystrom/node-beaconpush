@@ -95,7 +95,7 @@ API Examples
 Authors
 -------
 
-- Carl Bystr&ouml;m <http://www.pedantique.org/>
+- Carl Bystr&ouml;m ([@cgbystrom](http://twitter.com/cgbystrom))
 
 License
 -------
