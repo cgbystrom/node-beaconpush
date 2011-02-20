@@ -7,11 +7,15 @@ Example
 -------
 Sends a message to a connected web browser:
 
+    var bp = require('beaconpush');
+
     // Create a new client
-    var beaconpush = new Client('<your-api-key>', '<your-secret-key>');
+    var beaconpush = new bp.Client('<your-api-key>', '<your-secret-key>');
     
     // Send a 'chatMessage' to user 'romeo'
     beaconpush.user('romeo').send({chatMessage: 'ZOMG'});
+
+A more detailed chat example is available in the [examples](https://github.com/cgbystrom/node-beaconpush/tree/master/examples) directory.
 
 What is Beaconpush?
 -------------------
@@ -37,7 +41,7 @@ Read more on [beaconpush.com](http://beaconpush.com)
 Installation
 ---------------
 
-With Node Package Manager installed, just type:
+With [Node Package Manager](http://npmjs.org/) installed, just type:
 
     npm install beaconpush
 
@@ -45,8 +49,10 @@ With Node Package Manager installed, just type:
 API Examples
 --------
 
+    var bp = require('beaconpush');
+    
     // Create a new client
-    var beaconpush = new Client('<your-api-key>', '<your-secret-key>');
+    var beaconpush = new bp.Client('<your-api-key>', '<your-secret-key>');
     
     // Get number of users currently connected to your site
     beaconpush.usersConnected(function (numConnected) {
