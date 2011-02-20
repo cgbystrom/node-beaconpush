@@ -92,6 +92,9 @@ API Examples
       console.log('Users online ' + users);
     });
 
+
+<script src="https://gist.github.com/836224.js?file=node-beaconpush_example.js"></script>
+
 Authors
 -------
 
