@@ -55,7 +55,7 @@ API Examples
     var beaconpush = new bp.Client('<your-api-key>', '<your-secret-key>');
     
     // Get number of users currently connected to your site
-    beaconpush.usersConnected(function (numConnected) {
+    beaconpush.usersConnected(function (err, numConnected) {
       console.log('There are ' + numConnected + ' users online');
     });
 
