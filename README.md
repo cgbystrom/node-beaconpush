@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/cgbystrom/node-beaconpush.png)](http://travis-ci.org/cgbystrom/node-beaconpush)
 node-beaconpush
 ===============
 
