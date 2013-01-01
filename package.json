@@ -12,6 +12,7 @@
   "bugs": {
     "web": "https://github.com/cgbystrom/node-beaconpush/issues"
   },
+  "main": "./lib/index.js",
   "directories": {
     "lib": "./lib"
   },
